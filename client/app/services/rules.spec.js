@@ -14,4 +14,4 @@
 //   expect(rulesService.compare('rock', 'paper')).toBe(1);
 // });
 //
-// // pas le temps de faire de vrais tests, malheuresement.
+// pas le temps de faire de vrais tests, malheuresement.
