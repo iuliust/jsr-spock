@@ -1,0 +1,23 @@
+<form ng-submit="vm.submit()">
+	<div layout layout-align="center center">
+		<md-card flex="grow">
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Nouvelle partie en ligne</span>
+				</md-card-title-text>
+			</md-card-title>
+
+			<md-card-content>
+				<md-input-container class="md-block" >
+					<label>Titre</label>
+					<input type="text" ng-model="vm.newGame.title">
+				</md-input-container>
+			</md-card-content>
+			<md-card-actions layout="row" layout-align="end center">
+				<md-button type="submit"
+				class="md-primary"
+				ng-disabled="!vm.newGame.title.length">C'est parti !</md-button>
+			</md-card-actions>
+		</md-card>
+	</div>
+</form>

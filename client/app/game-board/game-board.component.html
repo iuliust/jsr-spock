@@ -1,0 +1,73 @@
+<div>
+	<p ng-click="vm.gameState.playDingSound()">{{"C'est au tour de " + vm.gameState.playerNames[vm.gameState.curPlayerIndex]}}</p>
+
+	<div class="gameboard-ctn">
+		<svg class="gameboard-svg">
+			<defs>
+		        <marker id="Triangle"
+		                viewBox="0 0 10 10"
+		                refX="1" refY="5"
+		                markerWidth="3"
+		                markerHeight="3"
+		                orient="auto" style="fill:black">
+		            <path d="M 0 0 L 10 5 L 0 10 z" />
+			    </marker>
+		    </defs>
+
+			<line ng-repeat-start="circle in vm.circles"
+			ng-attr-x1="{{circle.arrows[0][0].x}}"
+			ng-attr-y1="{{circle.arrows[0][0].y}}"
+			ng-attr-x2="{{circle.arrows[0][1].x}}"
+			ng-attr-y2="{{circle.arrows[0][1].y}}"
+			style="stroke-width:3;marker-end: url(#Triangle)"
+			ng-attr-stroke="{{circle.color}}">
+			</line>
+			<line ng-repeat-end
+			ng-attr-x1="{{circle.arrows[1][0].x}}"
+			ng-attr-y1="{{circle.arrows[1][0].y}}"
+			ng-attr-x2="{{circle.arrows[1][1].x}}"
+			ng-attr-y2="{{circle.arrows[1][1].y}}"
+			style="stroke-width:3;marker-end: url(#Triangle)"
+			ng-attr-stroke="{{circle.color}}">
+			</line>
+
+
+			<g class="move"
+			ng-class="{selected: vm.gameState.displayMoves && vm.gameState.isSelected(circle.move)}"
+			ng-repeat="circle in vm.circles">
+				<circle
+				class="move-circle"
+				data-ng-click="vm.onChoose({$move: circle.move})"
+				ng-attr-cx="{{circle.x}}"
+				ng-attr-cy="{{circle.y}}"
+				ng-attr-r="{{vm.parameters.radius}}"
+				ng-attr-fill="{{circle.color}}"
+				ng-attr-stroke="{{circle.color}}"></circle>
+				<text
+				class="move-text"
+				ng-attr-x="{{circle.x}}"
+				ng-attr-y="{{circle.y}}"
+				text-anchor="middle">{{circle.label}}</text>
+			</g>
+		</svg>
+	</div>
+
+
+	<h1 class="game-hud" layout="row" layout-align="space-between">
+		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[0])}">
+			<span class="player-name">{{ vm.gameState.playerNames[0] }}</span>
+			<span class="player-score">{{vm.gameState.scores[0]}}</span>
+		</div>
+		<div style="text-align:center"><span>vs</span></div>
+		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[1])}">
+			<span class="player-score">{{vm.gameState.scores[1]}}</span>
+			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
+		</div>
+	</h1>
+	<!-- <div class="score-gauges-row" layout="row" layout-align="space-between">
+		<span class="player-score" flex>{{vm.gameState.players[0].score}}</span>
+		<span class="player-score" flex>{{vm.gameState.players[1].score}}</span>
+		<gauge flex="40" value="10 - vm.gameState.players[0].score" max="10"></gauge>
+		<gauge flex="40" value="10 - vm.gameState.players[1].score" max="10"></gauge>
+	</div> -->
+</div>

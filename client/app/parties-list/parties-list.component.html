@@ -1,0 +1,22 @@
+<!-- <h2 class="md-display-1" layout-margin layout-padding>
+	Parties en cours ({{ vm.spockGames.length }})
+	<md-button ui-sref="spock.create">Nouvelle partie</md-button>
+</h2> -->
+<md-subheader class="md-no-sticky">
+	<div layout="row" layout-align="space-between">
+		<span>Parties en cours ({{ vm.spockGames.length }})</span>
+		<a class="nouvelle-partie" ui-sref="spock.create">nouvelle partie</a>
+	</div>
+</md-subheader>
+
+<md-list>
+	<md-list-item class="secondary-button-padding" ng-repeat="game in vm.spockGames">
+		<md-button class="md-icon-button" ng-click="vm.removeGame(game._id)">X</md-button>
+		<h3>{{game.title}}</h3>
+		<md-button class="md-secondary" ng-click="vm.joinGame(game._id)">Join</md-button>
+	</md-list-item>
+</md-list>
+
+<!-- <md-button class="md-fab" aria-label="FAB">
+	<md-icon md-svg-src="your/icon.svg"></md-icon>
+</md-button> -->

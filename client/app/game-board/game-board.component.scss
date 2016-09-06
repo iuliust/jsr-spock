@@ -1,0 +1,83 @@
+game-board {
+	display: block;
+
+	.gameboard-ctn {
+
+		svg.gameboard-svg {
+			display: block;
+			margin: auto;
+			width: 500px;
+			height: 500px;
+
+			g.move {
+				cursor: pointer;
+
+				&:hover {
+					.move-circle {
+						// opacity: .6;
+					}
+				}
+				&.disabled {
+					cursor: default;
+				}
+				&.selected .move-circle {
+					stroke: black;
+				}
+
+				.move-circle {
+					stroke-width: 5;
+					transition: opacity .5s;
+
+					&:focus {
+						outline: none;
+					}
+				}
+				.move-text {
+					pointer-events: none;
+					stroke: black;
+					stroke-width: 1;
+				}
+			}
+		}
+	}
+
+	.game-hud {
+		margin: .5em;
+
+		span.playing {
+			// border-color: green;
+		}
+		.player-hud {
+			border: 2px solid black;
+
+			&.playing .player-name {
+				text-decoration: underline;
+			}
+
+			.player-name, .player-score {
+				display: inline-block;
+				padding: .2em .4em;
+				white-space: nowrap;
+			}
+
+			.playing-red-dot {
+
+			}
+		}
+		.player-score {
+			background-color: black;
+			color: white;
+		}
+	}
+}
+
+@media(max-width: 840px) {
+	.game-hud {
+		font-size: 1.5em;
+	}
+
+	svg.gameboard-svg {
+		width: 300px;
+		height: 300px;
+	}
+}

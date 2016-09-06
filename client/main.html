@@ -1,0 +1,40 @@
+<head>
+  <title>spockback</title>
+  <base href="/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+</head>
+
+<body>
+	<ng-content layout="column" layout-fill ng-controller="MainController as vm">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Favorite"
+				ng-click="vm.openLeftMenu()">
+					<md-icon> menu </md-icon>
+				</md-button>
+				<h2><span>Lizard, Spock</span></h2>
+				<!-- ce flex remplit l'espace horizontalement -->
+				<span flex></span>
+				<login-buttons></login-buttons>
+			</div>
+		</md-toolbar>
+		<div>
+			<div layout="row">
+				<md-sidenav md-component-id="left" class="md-sidenav-left">
+					<md-list flex>
+					<md-menu-content>
+						<md-menu-item ng-repeat="link in vm.links">
+							<md-button ng-click="vm.openLeftMenuLink(link.sref)">{{link.text}}</md-button>
+						</md-menu-item>
+					</md-menu-content>
+					</md-list>
+				</md-sidenav>
+				<div flex>
+					<ui-view layout-align="center center" layout="row"></ui-view>
+				</div>
+			</div>
+		</div>
+	</ng-content>
+</body>

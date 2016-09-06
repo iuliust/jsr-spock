@@ -1,0 +1,11 @@
+gauge {
+	display: block;
+
+	.gauge-background {
+		background-color: red;
+	}
+	.gauge-filler {
+		height: 1em;
+		background-color: green;
+	}
+}
