@@ -18,6 +18,11 @@ pour lancer le serveur web :
 meteor
 ```
 
+pour lancer le serveur web en mode production (et ne pas se taper 2MB d'assets lors du chargement) :
+```
+meteor --production
+```
+
 pour compiler l'application vers du hybride android :
 ```
 meteor run android-device
