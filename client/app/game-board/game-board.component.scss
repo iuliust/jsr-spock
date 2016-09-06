@@ -1,6 +1,10 @@
 game-board {
 	display: block;
 
+	.indicator {
+		text-align: center;
+	}
+
 	.gameboard-ctn {
 
 		svg.gameboard-svg {
