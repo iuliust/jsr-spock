@@ -5,9 +5,11 @@ score-indicator {
 	color: white;
 
 	padding: .2em .4em;
+	height: 100%;
+	box-sizing: border-box;
 
 	span {
-		display: block;
+		display: inline-block;
 
 		&.changed {
 			animation: bump .4s;
@@ -17,6 +19,6 @@ score-indicator {
 
 @keyframes bump {
 	50% {
-		transform: scale(1.8);
+		transform: scale(2.5);
 	}
 }

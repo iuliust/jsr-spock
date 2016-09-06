@@ -1,6 +1,19 @@
 <div>
 	<p class="indicator" ng-click="vm.gameState.playDingSound()">{{"C'est au tour de " + vm.gameState.playerNames[vm.gameState.curPlayerIndex]}}</p>
 
+	<div class="game-hud" layout="row" layout-align="space-between">
+		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[0])}">
+			<span class="player-name">{{ vm.gameState.playerNames[0] }}</span>
+			<score-indicator score="vm.gameState.scores[0]"></score-indicator>
+		</div>
+		<div style="text-align:center"><span>vs</span></div>
+		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[1])}">
+			<score-indicator score="vm.gameState.scores[1]"></score-indicator>
+			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
+		</div>
+	</div>
+
+
 	<div class="gameboard-ctn">
 		<svg class="gameboard-svg" viewBox="0 0 500 500">
 			<defs>
@@ -51,21 +64,6 @@
 			</g>
 		</svg>
 	</div>
-
-
-	<h1 class="game-hud" layout="row" layout-align="space-between">
-		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[0])}">
-			<span class="player-name">{{ vm.gameState.playerNames[0] }}</span>
-			<!-- <span class="player-score">{{vm.gameState.scores[0]}}</span> -->
-			<score-indicator score="vm.gameState.scores[0]"></score-indicator>
-		</div>
-		<div style="text-align:center"><span>vs</span></div>
-		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[1])}">
-			<score-indicator score="vm.gameState.scores[1]"></score-indicator>
-			<!-- <span class="player-score">{{vm.gameState.scores[1]}}</span> -->
-			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
-		</div>
-	</h1>
 	<!-- <div class="score-gauges-row" layout="row" layout-align="space-between">
 		<span class="player-score" flex>{{vm.gameState.players[0].score}}</span>
 		<span class="player-score" flex>{{vm.gameState.players[1].score}}</span>
