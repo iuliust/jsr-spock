@@ -56,11 +56,13 @@
 	<h1 class="game-hud" layout="row" layout-align="space-between">
 		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[0])}">
 			<span class="player-name">{{ vm.gameState.playerNames[0] }}</span>
-			<span class="player-score">{{vm.gameState.scores[0]}}</span>
+			<!-- <span class="player-score">{{vm.gameState.scores[0]}}</span> -->
+			<score-indicator score="vm.gameState.scores[0]"></score-indicator>
 		</div>
 		<div style="text-align:center"><span>vs</span></div>
 		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.players[1])}">
-			<span class="player-score">{{vm.gameState.scores[1]}}</span>
+			<score-indicator score="vm.gameState.scores[1]"></score-indicator>
+			<!-- <span class="player-score">{{vm.gameState.scores[1]}}</span> -->
 			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
 		</div>
 	</h1>

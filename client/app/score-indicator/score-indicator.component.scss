@@ -1,0 +1,22 @@
+score-indicator {
+	display: inline-block;
+
+	background-color: black;
+	color: white;
+
+	padding: .2em .4em;
+
+	span {
+		display: block;
+
+		&.changed {
+			animation: bump .4s;
+		}
+	}
+}
+
+@keyframes bump {
+	50% {
+		transform: scale(1.8);
+	}
+}
