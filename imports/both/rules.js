@@ -77,19 +77,19 @@ export class Rules {
 		// résultat.
 		switch (iMove1 - iMove2) {
 			case 0:
-				console.info('draw.');
+				// console.info('draw.');
 				return 0;
 			case -1:
 			case -3:
 			case 2:
 			case 4:
-				console.info(this.getMessage(move1, move2));
+				// console.info(this.getMessage(move1, move2));
 				return 1;
 			case -2:
 			case -4:
 			case 1:
 			case 3:
-				console.info(this.getMessage(move2, move1));
+				// console.info(this.getMessage(move2, move1));
 				return -1;
 			default:
 				throw new Error('Something went wrong during the evaluation of the round');

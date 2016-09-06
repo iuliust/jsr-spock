@@ -11,7 +11,7 @@ it('should not alert first two notifications', function() {
   // rulesService('one');
   // rulesService('two');
 
-  expect(rulesService('rock', 'paper')).toEqual(1);
+  expect(rulesService.compare('rock', 'paper')).toEqual(1);
 });
 
 // pas le temps de faire de vrais tests, malheuresement.
