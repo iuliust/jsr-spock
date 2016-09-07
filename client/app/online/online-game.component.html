@@ -1,3 +1,11 @@
-<pre>{{vm.gameData | json}}</pre>
+<game-board on-choose="vm.declareMove($move)" game-state="vm.gameData">
+	<div>
+		<div style="text-align: center" ng-if="vm.gameData.winner == vm.user._id">
+			<p>A winner is you!</p>
+		</div>
 
-<game-board on-choose="vm.game.declareMove(vm.game.curPlayer, $move)" game-state="vm.gameData"></game-board>
+		<div style="text-align: center" ng-if="vm.gameData.winner == vm.gameData.getOtherPlayer()">
+			<p>You lost!</p>
+		</div>
+	</div>
+</game-board>

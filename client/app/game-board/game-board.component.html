@@ -1,5 +1,5 @@
 <div>
-	<p class="indicator" ng-click="vm.gameState.playDingSound()">{{"C'est au tour de " + vm.gameState.playerNames[vm.gameState.curPlayerIndex]}}</p>
+	<p class="indicator" ng-if="vm.gameState.curPlayerIndex" ng-click="vm.gameState.playDingSound()">{{"C'est au tour de " + vm.gameState.playerNames[vm.gameState.curPlayerIndex]}}</p>
 
 	<div class="game-hud" layout="row" layout-align="space-between">
 		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.playerIds[0])}">
@@ -12,6 +12,9 @@
 			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
 		</div>
 	</div>
+
+
+	<ng-transclude></ng-transclude>
 
 
 	<div class="gameboard-ctn">

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import { Meteor } from 'meteor/meteor';
 
 import templateUrl from './online-game.component.html';
 
@@ -17,14 +18,17 @@ class OnlineGameController {
 
 		this.onlineGameService = onlineGame;
 
+		this.autorun(() => {
+			this.user = Meteor.user();
+		});
+
 		this.helpers({
 			gameData() {
-				if (firstTime) {
-					this.game = new this.onlineGameService();
-				}
 				let g = SpockGames.findOne({_id: this.gameId});
 				// console.log('g', g);
-				return g;
+				return new this.onlineGameService(g);
+				// this.game = new this.onlineGameService(g);
+				// return g;
 			}
 		});
 	}
@@ -39,6 +43,11 @@ class OnlineGameController {
 		// 	winner: string
 		// };
 		// SpockGames.findOne(this.gameId, ())
+	}
+
+	declareMove(move) {
+		Meteor.call('declareMove', this.gameId, move, (err, gameId) => {
+		});
 	}
 }
 

@@ -23,9 +23,10 @@ class PartiesListController {
 	}
 
 	joinGame(gameId) {
+		this.$log.log(gameId)
 		Meteor.call('joinGame', gameId, (err, result) => {
 			if (err) {
-				$log.error(err);
+				this.$log.error(err);
 			} else {
 				this.$state.go('spock.onlineGame', {gameId});
 			}

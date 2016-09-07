@@ -81,6 +81,7 @@ class GameBoardController {
 angular.module('spockApp')
 	.component('gameBoard', {
 		templateUrl,
+		transclude: true,
 		bindings: {
 			onChoose: '&',
 			gameState: '='

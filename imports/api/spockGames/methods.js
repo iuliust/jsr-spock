@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 
 import { SpockGames } from './collection';
 import { Rules } from '../../both/rules';
+import { Partay } from '../../both/partay';
 
 
 function getContactEmail(user) {
@@ -43,12 +44,15 @@ export function joinGame(gameId) {
 		throw new Meteor.Error(404, `Partaaaay not found. :'-(`);
 	}
 
-	if (game.players.length > 1) {
+	if (game.playerIds.length > 1 && !this.playerIds.some(p => p === this.userId)) {
 		throw new Meteor.Error(403, `Already two players in there :-/ Please join another game.`);
 	}
 
-	SpockGames.update(gameId, {
-		$addToSet: {players: this.userId}
+	SpockGames.update({_id: gameId}, {
+		$addToSet: {
+			playerIds: this.userId,
+			playerNames: getContactEmail(Meteor.user())
+		}
 	}, (err) => {
 		if (err) {
 			throw new Meteor.Error(500, `Couldn't change the database : ${err}`);
@@ -68,13 +72,15 @@ export function declareMove(gameId, move) {
 		throw new Meteor.Error(400, `Illegal move. Expected 'rock' | 'paper' | 'cissors' | 'lizard' | 'spock', got ${move}.`);
 	}
 
-	const game = SpockGames.findOne({_id: gameId});
+	const gameData = SpockGames.findOne({_id: gameId});
 
-	if (!game) {
+	if (!gameData) {
 		throw new Meteor.Error(400, `Partaaaay not found. :'-(`);
 	}
 
+	const game = new Partay(gameData);
 
+	game.playMove(move);
 }
 
 
