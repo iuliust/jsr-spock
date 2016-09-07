@@ -13,11 +13,11 @@ class PartiesListController {
 		this.$log = $log;
 		this.$state = $state;
 
-		this.subscribe('spockGames');
+		this.subscribe('spockGames', () => [{}]);
 
 		this.helpers({
 			spockGames() {
-				return SpockGames.find({});
+				return SpockGames.find({}, {});
 			}
 		});
 	}

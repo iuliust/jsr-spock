@@ -18,12 +18,15 @@ export function createGame(game) {
 		throw new Meteor.Error(403, 'You must be logged in to create a partaaaay.');
 	}
 
-	SpockGames.insert({
+	return SpockGames.insert({
 		title: game.title,
 		owner: this.userId,
-		players: [this.userId],
+		playerIds: [this.userId],
+		playerNames: [Meteor.user().emails[0].address],
 		history: [],
-		curMoves: []
+		curMoves: [null, null],
+		scores: [0, 0],
+		winner: null
 	});
 }
 
@@ -71,7 +74,7 @@ export function declareMove(gameId, move) {
 		throw new Meteor.Error(400, `Partaaaay not found. :'-(`);
 	}
 
-	
+
 }
 
 

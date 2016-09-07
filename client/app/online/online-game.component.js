@@ -2,19 +2,31 @@ import angular from 'angular';
 
 import templateUrl from './online-game.component.html';
 
+import { SpockGames } from '../../../imports/api/spockGames';
+
 class OnlineGameController {
 	constructor($reactive, $scope, onlineGame) {
 		'ngInject';
 
+		var firstTime = true;
+
 		$reactive(this).attach($scope);
-		this.subscribe('spockGameDetail');
+		this.subscribe('spockGames', () => [{
+			_id: this.gameId
+		}]);
+
+		this.onlineGameService = onlineGame;
+
 		this.helpers({
-			spockGameDetail() {
-				console.info(this.gameId);
-				return SpockGames.findOne(this.gameId);
+			gameData() {
+				if (firstTime) {
+					this.game = new this.onlineGameService();
+				}
+				let g = SpockGames.findOne({_id: this.gameId});
+				// console.log('g', g);
+				return g;
 			}
 		});
-		this.onlineGameService = onlineGameService;
 	}
 
 	$onInit() {
@@ -26,7 +38,7 @@ class OnlineGameController {
 		// 	scores: [number, number],
 		// 	winner: string
 		// };
-		this.game = new this.onlineGameService();
+		// SpockGames.findOne(this.gameId, ())
 	}
 }
 
@@ -34,7 +46,7 @@ angular.module('spockApp')
 	.component('onlineGame', {
 		templateUrl,
 		bindings: {
-			gameId: '>'
+			gameId: '<'
 		},
 		controllerAs: 'vm',
 		controller: OnlineGameController

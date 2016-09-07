@@ -1,6 +1,6 @@
 import { Rules } from './rules';
 
-class Partay {
+export class Partay {
 	/*
 {
 	_id: string,
@@ -13,31 +13,35 @@ class Partay {
 }
 	*/
 	constructor(partayDefinitionObject) {
-		this.game = partayDefinitionObject;
+		Object.assign(this, partayDefinitionObject);
 	}
 
 	isOwner(userId) {
-		return userId === this.game.owner;
+		return userId === this.owner;
 	}
 
 	isPlayer(userId) {
 		return this.indexUser(userId) !== -1;
 	}
 
-	indexUser(userId) {
-		return this.game.players.indexOf(userId);
+	getUserIndex(userId) {
+	// indexUser(userId) {
+		return this.playerIds.indexOf(userId);
 	}
 
-	canPlay(userId) {
+	canPlay() {
 		if (!this.userId) {
 			throw new Meteor.Error('not connected');
 		}
 
-		let indexUser = this.indexUser(userId);
-		if (indexUser === -1) {
+		let userIndex = this.getUserIndex(this.userId);
+		if (userIndex === -1) {
 			throw new Meteor.Error(`you're not one of the players`);
 		}
-		return this.game.curMoves[indexUser] === null;
+		if (this.playerIds.length === 1) {
+			return false;
+		}
+		return this.curMoves[userIndex] === null;
 	}
 
 	playMove(move) {
@@ -49,44 +53,44 @@ class Partay {
 			throw new Meteor.Error(`Your choice must be one of the following : 'spock', 'cissors', 'paper', 'rock' or 'lizard'`);
 		}
 
-		if (this.game.winner) {
+		if (this.winner) {
 			throw new Meteor.Error(`The game is over.`);
 		}
 
-		this.game.curMoves[this.indexUser] = move;
+		this.curMoves[this.getUserIndex(this.userId)] = move;
 
-		if (this.game.curMoves.every(m => m !== null)) {
+		if (this.curMoves.every(m => m !== null)) {
 			this.history.push(this.game.curMoves);
-			let résultat = Rules.compare(this.game.curMoves[0], this.game.curMoves[1]);
+			let résultat = Rules.compare(this.curMoves[0], this.curMoves[1]);
 			switch (résultat) {
 				case 1:
-					this.game.scores[0] += 1;
+					this.scores[0]++;
 					break;
 				case -1:
-					this.game.scores[1] += 1;
+					this.scores[1]++;
 					break;
 			}
-			let max = Math.max(...this.game.scores);
+			let max = Math.max(...this.scores);
 			if (max >= 10) {
-				let indexWinner = this.game.scores.indexOf(max);
-				this.game.winner = this.game.players[indexWinner];
+				let indexWinner = this.scores.indexOf(max);
+				this.winner = this.playerIds[indexWinner];
 			}
-			this.game.curMoves = [null, null];
+			this.curMoves = [null, null];
 
-			SpockGames.update(this.game._id, {
+			SpockGames.update(this._id, {
 				$addToSet: {
-					history: this.game.curMoves
+					history: this.curMoves
 				},
 				$set: {
 					curMoves: [null, null],
-					scores: this.game.scores,
-					winner: this.game.winner
+					scores: this.scores,
+					winner: this.winner
 				}
 			});
 		} else {
-			SpockGames.update(this.game._id, {
+			SpockGames.update(this._id, {
 				$set: {
-					curMoves: this.game.curMoves
+					curMoves: this.curMoves
 				}
 			});
 		}

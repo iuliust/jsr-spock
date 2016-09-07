@@ -20,7 +20,6 @@ class CreatePartyController {
 		this.newGame.owner = Meteor.user()._id;
 
 		Meteor.call('createGame', this.newGame, (err, gameId) => {
-			// console.log(`gameId: ${gameId}`);
 			this.$state.go('spock.onlineGame', {gameId: gameId});
 		});
 
