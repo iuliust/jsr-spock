@@ -9,5 +9,5 @@ if (Meteor.isServer) {
 
 	Meteor.publish('spockGameDetail', (gameId) => {
 		return SpockGames.findOne(gameId);
-	})
+	});
 }

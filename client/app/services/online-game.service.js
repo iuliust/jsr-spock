@@ -3,7 +3,7 @@ import angular from 'angular';
 import { Partay } from '../../../imports/both/partay';
 
 angular.module('spockApp')
-	.factory('onlineGameService', onlineGameServiceFactory)
+	.factory('onlineGame', onlineGameServiceFactory)
 
 function onlineGameServiceFactory() {
 	'ngInject';

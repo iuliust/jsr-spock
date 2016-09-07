@@ -3,14 +3,15 @@ import angular from 'angular';
 import templateUrl from './online-game.component.html';
 
 class OnlineGameController {
-	constructor(onlineGameService, $reactive, $scope) {
+	constructor($reactive, $scope, onlineGame) {
 		'ngInject';
 
 		$reactive(this).attach($scope);
 		this.subscribe('spockGameDetail');
 		this.helpers({
-			game() {
-				return SpockGames.find(this.gameId);
+			spockGameDetail() {
+				console.info(this.gameId);
+				return SpockGames.findOne(this.gameId);
 			}
 		});
 		this.onlineGameService = onlineGameService;

@@ -1,17 +1,16 @@
-// var mock, rulesService;
-// beforeEach(module('spockApp'));
-// beforeEach(function() {
+// describe('Service : rulesService', function() {
+// 	beforeEach(module('spockApp'));
 //
-//   inject(function($injector) {
-//     rulesService = $injector.get('rulesService');
-//   });
+// 	var rulesService, scope;
+//
+// 	beforeEach(inject(function(_rulesService_) {
+// 		rulesService = _rulesService_;
+// 	}));
+//
+// 	describe(`test de l'évaluation des choix des joueurs`, function() {
+// 		it('devrait retourner la différence entre les deux choix')
+// 		expect(rulesService.compare('rock', 'paper').toBe(1));
+// 		expect(rulesService.compare('lizard', 'spock').toBe('dadz'));
+// 	})
+//
 // });
-//
-// it('should not alert first two notifications', function() {
-//   // rulesService('one');
-//   // rulesService('two');
-//
-//   expect(rulesService.compare('rock', 'paper')).toBe(1);
-// });
-//
-// pas le temps de faire de vrais tests, malheuresement.

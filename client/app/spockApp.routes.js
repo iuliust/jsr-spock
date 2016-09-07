@@ -28,7 +28,7 @@ function configRoutes(stateHelperProvider, $urlRouterProvider) {
 			`
 		}, {
 			name: 'onlineGame',
-			url: '/online-game/:gameId',
+			url: '/parties/:gameId',
 			template: `
 				<online-game game-id="vm.$stateParams.gameId"></online-game>
 			`,

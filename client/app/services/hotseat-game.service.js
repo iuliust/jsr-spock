@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 angular.module('spockApp')
-	.factory('hotseatGameService', hotseatGameServiceFactory);
+	.factory('hotseatGame', hotseatGameServiceFactory);
 
 function hotseatGameServiceFactory($timeout, rulesService, gameService, $mdToast) {
 	'ngInject';
@@ -15,7 +15,7 @@ function hotseatGameServiceFactory($timeout, rulesService, gameService, $mdToast
 		}
 
 		get curPlayer() {
-			return this.players[this.curPlayerIndex];
+			return this.playerIds[this.curPlayerIndex];
 		}
 
 		isCurPlayer(playerId) {
@@ -33,7 +33,7 @@ function hotseatGameServiceFactory($timeout, rulesService, gameService, $mdToast
 			if (this.curMoves.every(m => m !== null)) {
 				let result = rulesService.compare(this.curMoves[0], this.curMoves[1]);
 				$mdToast.show($mdToast.simple().textContent(rulesService.getMessage(this.curMoves[0], this.curMoves[1])));
-				
+
 				switch (result) {
 					case 1:
 						this.scores[0]++;

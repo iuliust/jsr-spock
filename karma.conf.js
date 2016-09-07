@@ -15,7 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'client/app/**/*.spec.js'
+	  'node_modules/angular/angular.min.js',
+	  'node_modules/angular-mocks/angular-mocks.js',
+      'client/**/*.js',
     ],
 
 
@@ -27,6 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+		'client/**/*.js': ['babel']
     },
 
 
@@ -50,12 +53,12 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'IE'],
+    browsers: ['Chrome', /*'Firefox'*/],
 
 
     // Continuous Integration mode
