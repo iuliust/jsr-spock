@@ -11,7 +11,7 @@ function gameServiceFactory() {
 		}
 
 		isSelected(move) {
-			return this.players.some(p => p.curChoice == move);
+			return this.curMoves.indexOf(move) !== -1;
 		}
 
 		static playDingSound(frequency) {
