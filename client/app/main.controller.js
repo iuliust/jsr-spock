@@ -16,9 +16,9 @@ function MainController($mdSidenav, $state) {
 		text: 'Hot seat'
 	}, {
 		sref: 'spock.create',
-		text: 'Create party'
+		text: 'Nouvelle partie en ligne'
 	}, {
 		sref: 'spock.parties',
-		text: 'Parties list'
+		text: 'Parties en cours'
 	}];
 }
