@@ -44,7 +44,7 @@ export function joinGame(gameId) {
 		throw new Meteor.Error(404, `Partaaaay not found. :'-(`);
 	}
 
-	if (game.playerIds.length > 1 && !this.playerIds.some(p => p === this.userId)) {
+	if (game.playerIds.length > 1 && !game.playerIds.some(p => p === this.userId)) {
 		throw new Meteor.Error(403, `Already two players in there :-/ Please join another game.`);
 	}
 

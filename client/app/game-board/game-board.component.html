@@ -9,7 +9,7 @@
 		<div style="text-align:center"><span>vs</span></div>
 		<div class="player-hud" ng-class="{playing: !!vm.gameState.isCurPlayer(vm.gameState.playerIds[1])}">
 			<score-indicator score="vm.gameState.scores[1]"></score-indicator>
-			<span class="player-name">{{ vm.gameState.playerNames[1] }}</span>
+			<span class="player-name">{{ (vm.gameState.playerNames[1]) ? vm.gameState.playerNames[1] : 'en attente...' }}</span>
 		</div>
 	</div>
 

@@ -9,8 +9,6 @@ class OnlineGameController {
 	constructor($reactive, $scope, onlineGame) {
 		'ngInject';
 
-		var firstTime = true;
-
 		$reactive(this).attach($scope);
 		this.subscribe('spockGames', () => [{
 			_id: this.gameId
@@ -25,25 +23,12 @@ class OnlineGameController {
 		this.helpers({
 			gameData() {
 				let g = SpockGames.findOne({_id: this.gameId});
-				// console.log('g', g);
 				return new this.onlineGameService(g);
-				// this.game = new this.onlineGameService(g);
-				// return g;
 			}
 		});
 	}
 
-	$onInit() {
-		// let GDO = {
-		// 	owner: string,
-		// 	players: [string, string],
-		// 	history: [string, string][],
-		// 	curMoves: [string, string],
-		// 	scores: [number, number],
-		// 	winner: string
-		// };
-		// SpockGames.findOne(this.gameId, ())
-	}
+	$onInit() { }
 
 	declareMove(move) {
 		Meteor.call('declareMove', this.gameId, move, (err, gameId) => {

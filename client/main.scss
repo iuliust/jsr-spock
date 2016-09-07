@@ -16,3 +16,7 @@
 ui-view {
 	display: block;
 }
+
+[ng-click], [data-ng-click] {
+	touch-action: none;
+}

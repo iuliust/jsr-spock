@@ -4,7 +4,7 @@
 			<p>A winner is you!</p>
 		</div>
 
-		<div style="text-align: center" ng-if="vm.gameData.winner == vm.gameData.getOtherPlayer()">
+		<div style="text-align: center" ng-if="vm.gameData.winner && vm.gameData.winner == vm.gameData.getOtherPlayer()">
 			<p>You lost!</p>
 		</div>
 	</div>
